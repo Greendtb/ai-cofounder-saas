@@ -1,0 +1,27 @@
+{
+  "name": "ai-cofounder-saas-mvp",
+  "version": "1.0.0",
+  "description": "AI Co-Founder SaaS MVP - Your Personal AI Assistant",
+  "main": "simple-server.js",
+  "scripts": {
+    "start": "node simple-server.js",
+    "dev": "node simple-server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ai",
+    "assistant",
+    "saas",
+    "chatbot",
+    "productivity"
+  ],
+  "author": "Chris Green <greendtb23@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
