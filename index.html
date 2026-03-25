@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Co-Founder - Your Personal AI Assistant</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a1a2e 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid #333;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #3b82f6, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .status {
+            font-size: 16px;
+            color: #10b981;
+            font-weight: 600;
+        }
+        .hero {
+            text-align: center;
+            padding: 100px 0;
+        }
+        .hero h1 {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #3b82f6, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            font-size: 20px;
+            color: #a0a0a0;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .signup-form {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            font-size: 16px;
+        }
+        .form-group input::placeholder {
+            color: #666;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .btn {
+            background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .success-message {
+            background: linear-gradient(45deg, #10b981, #059669);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .error-message {
+            background: linear-gradient(45deg, #ef4444, #dc2626);
+            border-radius: 10px;            padding: 20px;
+            margin-bottom: 20px;display: none;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #3b82f6;
+        }
+        .stat-label {
+            color: #a0a0a0;
+            margin-top: 5px;
+        }
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid #333;
+            color: #666;
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .hero p { font-size: 18px; }
+            .stats { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">AI Co-Founder</div>
+                <div class="status">Live Now</div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>
+                    Your AI Co-Founder<br>
+                    <span class="gradient-text">That Actually Works</span>
+                </h1>
+                <p>
+                    Get your own persistent AI assistant with memory, file access, and web search. 
+                    Lives in your chat apps. Executes tasks, not just advice.
+                </p>
+                <div class="stats" id="stats">
+                    <!-- Stats will be loaded here -->
+                </div>
+                <div class="signup-form">
+                    <div class="success-message" id="successMessage">
+                        🎉 Welcome to the future! Your AI assistant is being prepared.
+                    </div>
+                    <div class="error-message" id="errorMessage">
+                        <!-- Error will show here -->
+                    </div>
+                    <form id="signupForm">
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" placeholder="Enter your email address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="agentName">Name Your AI Assistant</label>
+                            <input type="text" id="agentName" placeholder="e.g., Alex, Assistant, Helper" maxlength="50" required>
+                        </div>
+                        <button type="submit" class="btn" id="submitBtn">
+                            Start 7-Day Free Trial
+                        </button>
+                    </form>
+                    <p style="margin-top: 15px; color: #666; font-size: 14px;">
+                        $29/month after trial • Cancel anytime • No setup fees
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 AI Co-Founder. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        async function loadStats() {
+            try {
+                const response = await fetch('/api/stats');
+                const data = await response.json();
+                document.getElementById('stats').innerHTML = `                    <div class="stat-card">
+                        <div class="stat-number">${data.totalUsers || 0}</div>
+                        <div class="stat-label">Users</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${data.activeSubscribers || 0}</div>
+                        <div class="stat-label">Active</div></div>
+                    <div class="stat-card">
+                        <div class="stat-number">$${data.monthlyRevenue || 0}</div>
+                        <div class="stat-label">MRR</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${data.recentSignups || 0}</div>
+                        <div class="stat-label">Today</div>
+                    </div>
+                `;
+            } catch (error) {
+                console.error('Failed to load stats:', error);
+            }
+        }
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const submitBtn = document.getElementById('submitBtn');
+            const successMsg = document.getElementById('successMessage');
+            const errorMsg = document.getElementById('errorMessage');
+            const email = document.getElementById('email').value;
+            const agentName = document.getElementById('agentName').value;
+            successMsg.style.display = 'none';
+            errorMsg.style.display = 'none';
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Creating your assistant...';
+            try {
+                const response = await fetch('/api/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, agentName })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    successMsg.style.display = 'block';
+                    successMsg.textContent = `🎉 Welcome ${agentName}! Your AI assistant is being prepared.`
+                    document.getElementById('signupForm').reset();
+                    loadStats();
+                } else {
+                    throw new Error(data.error || 'Something went wrong');
+                }
+            } catch (error) {
+                errorMsg.style.display = 'block';
+                errorMsg.textContent = `❌ ${error.message}`
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Start 7-Day Free Trial';
+            }
+        });
+        loadStats();
+        setInterval(loadStats, 30000);
+    </script>
+</body>
+</html>
