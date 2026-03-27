@@ -1,69 +1,134 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Velorum AI — The AI Co-Founder That Actually Ships</title>
-    <meta name="description" content="Stop re-explaining context to ChatGPT every conversation. Get Velorum AI - the AI co-founder with persistent memory that lives in WhatsApp and actually executes tasks. Join 84+ founders already shipping 10x faster.">
-    <link rel="canonical" href="https://ai-cofounder-saas-pi68n.ondigitalocean.app">
-    <meta property="og:title" content="Velorum AI — The AI Co-Founder That Actually Ships">
-    <meta property="og:description" content="The only AI with persistent memory that lives in your chat apps. Stop explaining context every time.">
-    <meta property="og:image" content="https://ai-cofounder-saas-pi68n.ondigitalocean.app/og-image.jpg">
-    <meta property="og:url" content="https://ai-cofounder-saas-pi68n.ondigitalocean.app">
-    <meta name="twitter:card" content="summary_large_image">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<a href="#privacy" class="text-gray-400 hover:text-white transition-colors">Privacy</a>
+                    <a href="#terms" class="text-gray-400 hover:text-white transition-colors">Terms</a>
+                    <a href="#security" class="text-gray-400 hover:text-white transition-colors">Security</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating CTA -->
+    <div id="floating-cta" class="fixed bottom-8 right-8 z-50 hidden">
+        <a href="https://buy.stripe.com/test_3cIfZj3VV8Xh6IH4Zj9Zm00" 
+           class="bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 text-white font-bold px-8 py-4 rounded-full shadow-2xl transition-all duration-300 cta-glow animate-bounce-gentle border-2 border-white/20">
+            🚀 Try Velorum AI
+        </a>
+    </div>
+
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            200: '#bbf7d0',
-                            300: '#86efac',
-                            400: '#4ade80',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            700: '#15803d',
-                            800: '#166534',
-                            900: '#14532d',
-                        },
-                        secondary: {
-                            50: '#eff6ff',
-                            100: '#dbeafe',
-                            200: '#bfdbfe',
-                            300: '#93c5fd',
-                            400: '#60a5fa',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                            800: '#1e40af',
-                            900: '#1e3a8a',
-                        },
-                        accent: {
-                            400: '#8b5cf6',
-                            500: '#7c3aed',
-                            600: '#6d28d9',
-                        }
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 3s ease-in-out infinite',
-                        'bounce-gentle': 'bounce 2s ease-in-out infinite',
-                        'glow': 'glow 2s ease-in-out infinite alternate',
-                        'fade-in': 'fadeIn 0.6s ease-out',
-                        'slide-up': 'slideUp 0.8s ease-out',
-                        'scale-in': 'scaleIn 0.5s ease-out',
-                    },
-                    keyframes: {
-                        glow: {
-                            '0%': { 'box-shadow': '0 0 20px rgba(34, 197, 94, 0.3), 0 0 40px rgba(34, 197, 94, 0.1)' },
-                            '100%': { 'box-shadow': '0 0 40px rgba(34, 197, 94, 0.5), 0 0 60px rgba(34, 197, 94, 0.2)' }
-                        },
-                        fadeIn: {
+        // Floating CTA logic
+        window.addEventListener('scroll', function() {
+            const floatingCTA = document.getElementById('floating-cta');
+            if (window.scrollY > 1200) {
+                floatingCTA.classList.remove('hidden');
+            } else {
+                floatingCTA.classList.add('hidden');
+            }
+        });
+
+        // CTA click tracking with enhanced analytics
+        document.querySelectorAll('a[href*="stripe.com"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const ctaText = this.textContent.trim();
+                const ctaLocation = this.closest('section')?.querySelector('h1, h2')?.textContent || 'Unknown Section';
+                
+                console.log('Velorum AI CTA clicked:', {
+                    text: ctaText,
+                    location: ctaLocation,
+                    timestamp: new Date().toISOString()
+                });
+                
+                // Google Analytics tracking
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'cta_click', { 
+                        event_category: 'conversion',
+                        event_label: ctaText,
+                        event_source: ctaLocation,
+                        product: 'Velorum AI',
+                        value: 1
+                    });
+                }
+                
+                // Additional analytics platforms
+                if (typeof analytics !== 'undefined') {
+                    analytics.track('Velorum AI CTA Clicked', {
+                        text: ctaText,
+                        location: ctaLocation,
+                        url: this.href,
+                        timestamp: Date.now()
+                    });
+                }
+
+                // Visual feedback
+                const originalText = this.innerHTML;
+                this.innerHTML = '⏳ Loading...';
+                this.style.pointerEvents = 'none';
+                
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.style.pointerEvents = 'auto';
+                }, 3000);
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        if ('IntersectionObserver' in window) {
+
+
+const animateOnScroll = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Observe elements with animation classes
+            document.querySelectorAll('.glass-effect, .section-gradient').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                animateOnScroll.observe(el);
+            });
+        }
+
+        // Performance optimization: Preload critical resources
+        const criticalImages = [
+            // Add any critical images here
+        ];
+        
+        criticalImages.forEach(src => {
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.as = 'image';
+            link.href = src;
+            document.head.appendChild(link);
+        });
+
+        // Emergency exit intent detection (last resort conversion)
+        let exitIntentShown = false;
+        document.addEventListener('mouseleave', function(e) {
+            if (e.clientY < 10 && !exitIntentShown) {
+                exitIntentShown = true;
+                if (confirm('Wait! Get your 14-day free trial of Velorum AI before you go. No credit card required. Click OK to continue.')) {
+                    window.location.href = 'https://buy.stripe.com/test_3cIfZj3VV8Xh6IH4Zj9Zm00';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
